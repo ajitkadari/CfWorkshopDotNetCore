@@ -26,7 +26,7 @@ It is intended to demonstrate some of the day-in-the-life features for developer
 
 #### To run the application
 
-By default the application uses an embedded SLQlite database.
+You will need a local MySQL server installed; appsettings.json has the credentials and database name.
 
 Run the application locally as an ASP.NET Core app for testing:
 
@@ -36,5 +36,6 @@ Run the application locally as an ASP.NET Core app for testing:
 
 Running in CF is as usual too:
 
+    cf create-service p-service-registry standard service-registry
     cf create-service p-mysql 100mb cf-workshop-db
     cf push cf-workshop-dotnet-core
