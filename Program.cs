@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Pivotal.Extensions.Configuration.ConfigServer;
 
 namespace CfWorkshopDotNetCore
 {
@@ -9,6 +10,7 @@ namespace CfWorkshopDotNetCore
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseCloudFoundryHosting(7000)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

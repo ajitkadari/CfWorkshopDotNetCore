@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Steeltoe.Extensions.Configuration;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
+using Pivotal.Discovery.Client;
 using Microsoft.EntityFrameworkCore;
 using CfWorkshopDotNetCore.Models;
 
@@ -38,6 +39,10 @@ namespace CfWorkshopDotNetCore
 
             services.AddDbContext<CfWorkshopContext>(options =>
                 options.UseMySql(Configuration));
+            
+            // Add service discovery client
+            services.AddDiscoveryClient(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +69,8 @@ namespace CfWorkshopDotNetCore
                     name: "default",
                     template: "{controller=Environment}/{action=Index}/{id?}");
             });
+
+            app.UseDiscoveryClient();
 
             SeedData.Initialize(app.ApplicationServices);
         }
