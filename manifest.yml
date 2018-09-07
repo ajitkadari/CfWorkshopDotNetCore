@@ -1,6 +1,6 @@
 ---
 applications:
-- name: cf-workshop-dotnet-core
+- name: cf-workshop-jimerson
   env:
     ASPNETCORE_ENVIRONMENT: development
   services:
