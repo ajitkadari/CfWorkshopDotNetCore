@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using CfWorkshopDotNetCore.Models;
 
 namespace CfWorkshopDotNetCore.Models
 {
@@ -15,7 +14,28 @@ namespace CfWorkshopDotNetCore.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
-            modelBuilder.Entity<Note>().Property(b => b.Created).HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+            modelBuilder.Entity<Note>().Property(b => b.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            modelBuilder.Entity<Note>().HasData(
+                    new Note
+                    {
+                        ID = 1,
+                        Text = "Note #1",
+                        Created = DateTime.Now
+                    },
+                    new Note
+                    {
+                        ID = 2,
+                        Text = "Note #2",
+                        Created = DateTime.Now
+                    },
+                    new Note
+                    {
+                        ID = 3,
+                        Text = "Note #3",
+                        Created = DateTime.Now
+                    }
+            );
         }
+
     }
 }
