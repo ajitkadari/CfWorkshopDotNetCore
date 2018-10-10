@@ -15,8 +15,8 @@ Before beginning this lab, make sure you have the following set up:
 
 1. The latest version of the CF CLI installed: https://github.com/cloudfoundry/cli/releases
 1. The latest git client installed: https://git-scm.com/downloads
-1. Clone this repository: `git clone https://github.com/bjimerson-pivotal/CfWorkshopDotNet`
-1. Open a Command Prompt window, and change your working directory to the CS project: `cd <git-repo-root>\CfWorkshopDotNet`
+1. Clone this repository: `git clone https://github.com/bjimerson-pivotal/CfWorkshopDotNetCore`
+1. Open a Command Prompt window, and change your working directory to the CS project: `cd <git-repo-root>\CfWorkshopDotNetCore`
 
 ## Step 1 - Setup
 Target your Pivotal Cloud Foundry (PCF) instance with the CF CLI, and log in:
@@ -59,7 +59,7 @@ cf set-env <app-name> <variable-name> <variable-value>
 ```
 
 ### Why this matters
-In 12-factor applications, environment variables should be used for configuration instead of code-based things like the `web.config` file.  PCF exposes all of the platform configuration to your application through environment variables, including bound services, which we will see later.  Instead of using files like `web.config`, make sure your application uses Steeltoe Configuration to set and retrieve configuration through environment variables.
+In 12-factor applications, environment variables should be used for configuration instead of code-based things like the `appsettings.json` file.  PCF exposes all of the platform configuration to your application through environment variables, including bound services, which we will see later.  Instead of using files like `appsettings.json`, make sure your application uses Steeltoe Configuration to set and retrieve configuration through environment variables.
 
 ## Step 4 - Create a database and bind to it
 Click on the Notes link in your web site.  It will take a while, but it should throw an error eventually.  This is because Notes are Entity Framework entities and we don't have a database configured yet.  Let's create a database for our application to use:
@@ -88,7 +88,7 @@ Now if you navigate to the Notes page in your app you should be able to add a ne
 ### What just happened?
 Our platform team has installed a bunch of backing services that we can use for our applications, including databases.  We browsed the PCF marketplace for available services, and created an instance of MySQL to use.  This was all done through something called a Service Broker.  A Service Broker is installed by the platform operators to let us discover, create, and bind to platform services.  Service Brokers can be for any backing services, like Oracle or MSSQL, NoSQL databases, SSO products, and service registries.
 
-When we bound to our newly created MySQL database, the Steeltoe Connector library automatically configured our connection string to use the bound MySQL database.  We didn't need to reconfigure anything in `web.config` or the like; we simply used the Steeltoe Connector library and restaged our application.
+When we bound to our newly created MySQL database, the Steeltoe Connector library automatically configured our connection string to use the bound MySQL database.  We didn't need to reconfigure anything in `appsettings.json` or the like; we simply used the Steeltoe Connector library and restaged our application.
 
 ## Step 5 - View your application logs
 Now that you have a database to connect to and everything is working properly, let's view the application and system logs:
